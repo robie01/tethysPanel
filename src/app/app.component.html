@@ -1,5 +1,5 @@
-<mat-sidenav-container class="main-container">
-  <mat-sidenav mode="side" [opened]="sideNavStatus">
+<mat-sidenav-container>
+  <mat-sidenav mode="side" [opened]="sideNavStatus" role="navigation">
     <br>
     <div style="margin-left: 30px">
       <a routerLink="/">Home</a>
@@ -8,9 +8,11 @@
     </div>
   </mat-sidenav>
   <mat-sidenav-content>
-    <app-toolbar (navToggle)="toggle()">
+    <app-toolbar
+      (navToggle)="toggle()">
     </app-toolbar>
-    <router-outlet ></router-outlet>
+    <router-outlet>
+    </router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
 

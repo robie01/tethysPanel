@@ -1,6 +1,6 @@
-.main-container {
-  height: 100vh;
+mat-sidenav-container,mat-sidenav, mat-sidenav-content {
+  height: 100%;
 }
-.mat-sidenav {
+mat-sidenav {
   width: 200px;
 }

@@ -6,10 +6,16 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { AppRoutingModule } from './/app-routing.module';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatButtonModule, MatIcon, MatIconModule, MatSidenavModule, MatTableModule} from '@angular/material';
+import {
+  MatButtonModule, MatFormFieldControl, MatFormFieldModule, MatIcon, MatIconModule, MatInputModule, MatSidenavModule,
+  MatTableModule
+} from "@angular/material";
 import { AdminComponent } from './admin/admin.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './auth/login/login.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 
 @NgModule({
@@ -18,6 +24,7 @@ import { HomeComponent } from './home/home.component';
     ToolbarComponent,
     AdminComponent,
     HomeComponent,
+    LoginComponent,
 
   ],
   imports: [
@@ -28,7 +35,13 @@ import { HomeComponent } from './home/home.component';
     MatSidenavModule,
     MatIconModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    FlexLayoutModule
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

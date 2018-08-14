@@ -1,7 +1,16 @@
-<mat-toolbar color="accent" class="toolbar">
+<mat-toolbar color="primary">
   <mat-toolbar-row>
-    <button mat-mini-fab="warn" (click)="toggleSidenav()">
-      <mat-icon>list</mat-icon>
-    </button>
+    <div>
+      <button mat-icon-button (click)="toggleSidenav()">
+        <mat-icon>list</mat-icon>
+      </button>
+    </div>
+    <div class="logoItem"><a routerLink="/">Tethys Aps Logo</a>
+    </div>
+    <div fxFlex fxLayout fxLayoutAlign="flex-end">
+      <ul class="navigation-items">
+        <li><a routerLink="/login">Login</a></li>
+      </ul>
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>
