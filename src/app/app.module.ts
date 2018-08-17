@@ -7,15 +7,22 @@ import { AppRoutingModule } from './/app-routing.module';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {
-  MatButtonModule, MatFormFieldControl, MatFormFieldModule, MatIcon, MatIconModule, MatInputModule, MatSidenavModule,
+  MatButtonModule,
+  MatCardModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatSidenavModule,
   MatTableModule
-} from "@angular/material";
+} from '@angular/material';
+
 import { AdminComponent } from './admin/admin.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
-import {ReactiveFormsModule} from "@angular/forms";
-import {FlexLayoutModule} from "@angular/flex-layout";
+import {ReactiveFormsModule} from '@angular/forms';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {AuthService} from "./auth/auth-service";
 
 
 @NgModule({
@@ -39,11 +46,12 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatCardModule
 
 
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
