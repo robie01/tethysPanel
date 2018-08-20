@@ -22,6 +22,9 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     this.navToggle.emit();
     console.log('click');
   }
+  logout() {
+    this.authService.logOut();
+  }
   ngOnDestroy() {
     this.authSubscription.unsubscribe();
   }

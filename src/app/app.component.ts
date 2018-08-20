@@ -7,7 +7,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  sideNavStatus = true;
+  sideNavStatus = false;
   toggle() {
     this.sideNavStatus = !this.sideNavStatus;
   }

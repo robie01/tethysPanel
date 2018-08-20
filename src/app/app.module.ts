@@ -22,7 +22,8 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {AuthService} from "./auth/auth-service";
+import {AuthService} from './auth/auth-service';
+
 
 
 @NgModule({
