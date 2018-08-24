@@ -1,0 +1,9 @@
+<form (ngSubmit)="onClick()" [formGroup]="testForm">
+<mat-form-field>
+  <input matInput placeholder="name" formControlName="name">
+</mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="address" formControlName="address">
+  </mat-form-field>
+  <button type="submit" mat-raised-button>Save</button>
+</form>

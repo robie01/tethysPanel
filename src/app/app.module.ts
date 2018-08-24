@@ -10,6 +10,7 @@ import {
   MatButtonModule,
   MatCardModule,
   MatFormFieldModule,
+  MatGridListModule,
   MatIconModule,
   MatInputModule,
   MatSidenavModule,
@@ -20,10 +21,17 @@ import { AdminComponent } from './admin/admin.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AuthService} from './auth/auth-service';
-
+import {CdkTableModule} from '@angular/cdk/table';
+import { AddingCustomerComponent } from './shared/adding-customer/adding-customer.component';
+import {AngularFireModule} from 'angularfire2';
+import {environment} from '../environments/environment';
+import {AngularFireAuthModule} from 'angularfire2/auth';
+import {AngularFirestore} from 'angularfire2/firestore';
+import {AuthGuard} from './auth/auth.guard';
+import { TestComponent } from './test/test.component';
 
 
 @NgModule({
@@ -33,6 +41,8 @@ import {AuthService} from './auth/auth-service';
     AdminComponent,
     HomeComponent,
     LoginComponent,
+    AddingCustomerComponent,
+    TestComponent,
 
   ],
   imports: [
@@ -48,11 +58,18 @@ import {AuthService} from './auth/auth-service';
     ReactiveFormsModule,
     MatInputModule,
     FlexLayoutModule,
-    MatCardModule
+    MatCardModule,
+    CdkTableModule,
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    MatGridListModule
+
+
 
 
   ],
-  providers: [AuthService],
+  providers: [AuthService, AngularFirestore, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

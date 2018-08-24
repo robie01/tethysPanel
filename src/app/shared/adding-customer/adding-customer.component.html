@@ -1,0 +1,74 @@
+<section  class="adding-customer">
+  <div class="row">
+    <form [formGroup]="addCustomerForm" (ngSubmit)="onSave()">
+      <mat-card fxLayout="row">
+        <mat-card-content fxLayout="row" fxLayoutAlign="center">
+          <div class="column">
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>Full Name</mat-label>
+                <input matInput placeholder="Name" formControlName="name">
+                <mat-icon matSuffix>business</mat-icon>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>Address</mat-label>
+                <input matInput placeholder="Address" formControlName="address">
+                <mat-icon matSuffix>add_location</mat-icon>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>City</mat-label>
+                <input  matInput placeholder="City" formControlName="city">
+                <mat-icon matSuffix>location_city</mat-icon>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>zip code</mat-label>
+                <input  matInput placeholder="zip code" formControlName="zipCode">
+                <mat-icon matSuffix>location_city</mat-icon>
+              </mat-form-field>
+            </p>
+          </div>
+          <div class="column">
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>vat number</mat-label>
+                <input type="number" matInput placeholder="vat_number" formControlName="vatNumber">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>Number of consumers</mat-label>
+                <input type="number" matInput placeholder="number of consumers" formControlName="numberOfConsumer">
+                <mat-icon matSuffix>group_add</mat-icon>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>cubic meters pump</mat-label>
+                <input type="number" matInput placeholder="cubic meters pumped" formControlName="cubicMetersPump">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+              </mat-form-field>
+            <p>
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>member number</mat-label>
+                <input type="number" matInput placeholder="member number" formControlName="memberNumber">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+              </mat-form-field>
+            <p>
+              <button class="button-cancel" mat-raised-button>Cancel</button>
+              <button type="submit" class="button-save" mat-raised-button>Save</button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+    </form>
+  </div>
+</section>
+

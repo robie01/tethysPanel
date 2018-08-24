@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyDTQ8J5TWo4-fT83jTghcp-FIBmAo1VtF8',
+    authDomain: 'tethys-adminpanel.firebaseapp.com',
+    databaseURL: 'https://tethys-adminpanel.firebaseio.com',
+    projectId: 'tethys-adminpanel',
+    storageBucket: 'tethys-adminpanel.appspot.com',
+    messagingSenderId: '151425827738'
+  }
 };
 
 /*
