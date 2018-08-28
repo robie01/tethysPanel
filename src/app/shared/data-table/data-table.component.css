@@ -1,0 +1,16 @@
+table {
+  width: 80%;
+}
+cdk-cell {
+  display: flex;
+  justify-content: flex-end;
+}
+cdk-header-cell {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 0;
+  padding-left: 24px;
+}
+cdk-header-cell:last-child {
+  margin-right: 0;
+}

@@ -8,7 +8,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {
   MatButtonModule,
-  MatCardModule,
+  MatCardModule, MatDialogModule,
   MatFormFieldModule,
   MatGridListModule,
   MatIconModule,
@@ -32,6 +32,9 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AngularFirestore} from 'angularfire2/firestore';
 import {AuthGuard} from './auth/auth.guard';
 import { TestComponent } from './test/test.component';
+import {CustomerService} from './shared/services/customer.service';
+import { DataTableComponent } from './shared/data-table/data-table.component';
+import { EditDialogComponent } from './shared/edit-dialog/edit-dialog.component';
 
 
 @NgModule({
@@ -43,6 +46,8 @@ import { TestComponent } from './test/test.component';
     LoginComponent,
     AddingCustomerComponent,
     TestComponent,
+    DataTableComponent,
+    EditDialogComponent,
 
   ],
   imports: [
@@ -60,6 +65,7 @@ import { TestComponent } from './test/test.component';
     FlexLayoutModule,
     MatCardModule,
     CdkTableModule,
+    MatDialogModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
@@ -69,7 +75,8 @@ import { TestComponent } from './test/test.component';
 
 
   ],
-  providers: [AuthService, AngularFirestore, AuthGuard],
-  bootstrap: [AppComponent]
+  providers: [AuthService, AngularFirestore, AuthGuard, CustomerService],
+  bootstrap: [AppComponent],
+  entryComponents: [EditDialogComponent]
 })
 export class AppModule { }

@@ -6,8 +6,8 @@ import {AngularFirestore} from 'angularfire2/firestore';
   providedIn: 'root'
 })
 export class CustomerService {
+  private customers: Customer[];
 
-  customers: Customer[];
 
   constructor(private db: AngularFirestore) { }
   createCustomer(customer: Customer) {
@@ -18,8 +18,13 @@ export class CustomerService {
       cubic_meters_pumped: customer.cubic_meters_pumped, member_number: customer.member_number, vat_number: customer.vat_number
     });
   }
+  fetchCustomer() {
+    // this.db.collection<Customer>('Customer').valueChanges().subscribe(data => {
+    //   this.customers = data;
+    // });
+  }
   // deleting customer
-  deleteCustomer(){
+  deleteCustomer() {
   }
   // updating data of customer
   updateCustomer() {

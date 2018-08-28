@@ -11,5 +11,6 @@ export interface Customer {
   created?: Date;
   member_number: number;
 
-
 }
+
+
