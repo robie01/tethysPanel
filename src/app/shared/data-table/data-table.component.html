@@ -1,46 +1,56 @@
-<div fxFlex fxFlexAlign fxLayoutAlign="center center">
-  <table cdk-table [dataSource]="dataSource">
-    <ng-container cdkColumnDef="name" >
-      <th cdk-header-cell *cdkHeaderCellDef> Name </th>
-      <td  cdk-cell *cdkCellDef="let element"> {{element.name}} </td>
+<div fxLayoutAlign="center center">
+  <mat-form-field fxFlex="20%">
+    <input matInput type="text" placeholder="Search" (keyup)="doFilter($event.target.value)">
+  </mat-form-field>
+</div>
+<div class="header-container" mat-elevation-z8>
+  <table cdk-table [dataSource]="dataSource" bgcolor="#d3d3d3" matSort>
+    <ng-container cdkColumnDef="name">
+      <th cdk-header-cell *cdkHeaderCellDef mat-sort-header>Name</th>
+      <td cdk-cell *cdkCellDef="let element">{{element.name}}</td>
     </ng-container>
 
     <ng-container cdkColumnDef="address">
-      <th cdk-header-cell *cdkHeaderCellDef> Address </th>
-      <td cdk-cell *cdkCellDef="let element"> {{element.address}} </td>
+      <th cdk-header-cell *cdkHeaderCellDef class="padding">Address</th>
+      <td cdk-cell *cdkCellDef="let element">{{element.address}}</td>
     </ng-container>
 
     <ng-container cdkColumnDef="zipCode">
-      <th cdk-header-cell *cdkHeaderCellDef> Zip code </th>
-      <td cdk-cell *cdkCellDef="let element"> {{element.zipCode}} </td>
+      <th cdk-header-cell *cdkHeaderCellDef>Zip code</th>
+      <td cdk-cell *cdkCellDef="let element">{{element.zipCode}}</td>
     </ng-container>
 
     <ng-container cdkColumnDef="vat">
-      <th cdk-header-cell *cdkHeaderCellDef> Vat number </th>
-      <td cdk-cell *cdkCellDef="let element"> {{element.vat_number}} </td>
+      <th cdk-header-cell *cdkHeaderCellDef>Vat number</th>
+      <td cdk-cell *cdkCellDef="let element">{{element.vat_number}}</td>
     </ng-container>
 
     <ng-container cdkColumnDef="numberOfConsumer">
-      <th cdk-header-cell *cdkHeaderCellDef> Number of Consumer </th>
-      <td cdk-cell *cdkCellDef="let element"> {{element.number_of_consumers}} </td>
+      <th cdk-header-cell *cdkHeaderCellDef>Number of Consumer</th>
+      <td cdk-cell *cdkCellDef="let element">{{element.number_of_consumers}}</td>
     </ng-container>
 
     <ng-container cdkColumnDef="memberNumber">
-      <th cdk-header-cell *cdkHeaderCellDef> Member Number </th>
-      <td cdk-cell *cdkCellDef="let element"> {{element.member_number}} </td>
+      <th cdk-header-cell *cdkHeaderCellDef>Member Number</th>
+      <td cdk-cell *cdkCellDef="let element">{{element.member_number}}</td>
     </ng-container>
 
     <ng-container cdkColumnDef="usageOfWater">
-      <th cdk-header-cell *cdkHeaderCellDef> Usage of water </th>
-      <td cdk-cell *cdkCellDef="let element"> {{element.cubic_meters_pumped}} </td>
+      <th cdk-header-cell *cdkHeaderCellDef>Usage of water</th>
+      <td cdk-cell *cdkCellDef="let element">{{element.cubic_meters_pumped}}</td>
     </ng-container>
 
     <ng-container cdkColumnDef="edit">
-      <th cdk-header-cell *cdkHeaderCellDef> Edit </th>
-      <td cdk-cell *cdkCellDef="let element"> {{element.edit}} </td>
+      <th cdk-header-cell *cdkHeaderCellDef>Edit</th>
+      <td cdk-cell *cdkCellDef="let element">{{element.edit}}</td>
     </ng-container>
 
     <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
     <tr cdk-row *cdkRowDef="let row; columns: displayedColumns"></tr>
   </table>
+  <mat-paginator [pageSize]="10"  [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+
+  </mat-paginator>
 </div>
+
+

@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {Customer} from '../customer.model';
-import {MatDialog, MatSort, MatTableDataSource} from '@angular/material';
+import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
 import {CustomerService} from '../services/customer.service';
 import {AngularFirestore} from 'angularfire2/firestore';
 import 'rxjs';
@@ -21,6 +21,7 @@ export class DataTableComponent implements AfterViewInit {
   private customerList: Customer[] = [];
 
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private customerService: CustomerService,
               private db: AngularFirestore,
@@ -31,8 +32,15 @@ export class DataTableComponent implements AfterViewInit {
       console.log(data);
       this.dataSource = new MatTableDataSource<Customer>(data);
       this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
     });
   }
+
+  doFilter(searchValue: string) {
+    this.dataSource.filter = searchValue.trim().toLowerCase();
+  }
+
+
 
 
 

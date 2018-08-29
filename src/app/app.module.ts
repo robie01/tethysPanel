@@ -13,7 +13,9 @@ import {
   MatGridListModule,
   MatIconModule,
   MatInputModule,
+  MatPaginatorModule,
   MatSidenavModule,
+  MatSortModule,
   MatTableModule
 } from '@angular/material';
 
@@ -69,7 +71,9 @@ import { EditDialogComponent } from './shared/edit-dialog/edit-dialog.component'
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    MatGridListModule
+    MatGridListModule,
+    MatSortModule,
+    MatPaginatorModule
 
 
 

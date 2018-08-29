@@ -1,16 +1,9 @@
 table {
-  width: 80%;
+  width: 100%;
+  text-align: justify;
 }
-cdk-cell {
-  display: flex;
-  justify-content: flex-end;
+.header-container {
+  height: 400px;
+  overflow: auto;
 }
-cdk-header-cell {
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 0;
-  padding-left: 24px;
-}
-cdk-header-cell:last-child {
-  margin-right: 0;
-}
+
