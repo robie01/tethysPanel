@@ -26,7 +26,8 @@
     "angularfire2": "^5.0.0-rc.11",
     "core-js": "^2.5.4",
     "firebase": "^5.4.0",
-    "rxjs": "^6.0.0",
+    "rxjs": "^6.3.1",
+    "rxjs-compat": "^6.3.1",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

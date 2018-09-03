@@ -1,3 +1,39 @@
-<p>
-  edit-dialog works!
-</p>
+<mat-card>
+  <div id="position">
+    <form [formGroup]="editForm" (ngSubmit)="saveCustomer()">
+    <mat-card-title>
+      <em>Edit Customer</em>
+    </mat-card-title>
+    <mat-card-content>
+      <mat-form-field>
+
+        <input matInput placeholder="Name" value="{{customer.name}}" formControlName="name">
+      </mat-form-field>
+      <p>
+        <mat-form-field>
+          <input matInput placeholder="Address" value="{{customer.address}}" formControlName="address">
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input matInput placeholder="Zip Code" value="{{customer.zipCode}}" formControlName="zipCode">
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field>
+          <input matInput placeholder="City" value="{{customer.city}}" formControlName="city">
+        </mat-form-field>
+      </p>
+      <mat-form-field>
+        <input matInput placeholder="Number of Consumer" value="{{customer.number_of_consumers}}" formControlName="number_of_consumers">
+      </mat-form-field>
+    </mat-card-content>
+    <button id="cancel" mat-mini-fab color="warn" (click)="closeDialog()">
+      <mat-icon>cancel</mat-icon>
+    </button>
+    <button type="submit" id="save" mat-mini-fab color="primary">
+      <mat-icon>check</mat-icon>
+    </button>
+    </form>
+  </div>
+</mat-card>

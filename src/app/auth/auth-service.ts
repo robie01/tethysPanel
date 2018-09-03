@@ -1,37 +1,66 @@
 import {AuthData} from './auth-data-model';
 import {Admin} from './admin.model';
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
+import {AngularFireAuth} from 'angularfire2/auth';
+import {Customer} from '../shared/customer.model';
+import {User} from 'firebase';
+
 
 @Injectable()
 export class AuthService {
   // this gives indication either we are logged in or logged out.
   authChange = new Subject<boolean>();
-  private admin: Admin;
+  private isAuthenticated = false;
+  customer: Customer;
 
-  constructor(private router: Router) {
+
+
+  constructor(private router: Router,
+              private fireAuth: AngularFireAuth) {
 
   }
+  // for future use, global listener for authenticated user.
+  initAuthListener() {
+    this.fireAuth.authState.subscribe(admin => {
+      if (admin) {
+        this.isAuthenticated = true;
+        this.authChange.next(true);
+        this.router.navigate(['/table']);
+      } else {
+        this.authChange.next(false);
+        this.router.navigate(['/login']);
+        this.isAuthenticated = false;
+      }
+    });
+  }
+
 
   login(authData: AuthData) {
-    this.admin = {
-      email: authData.email,
-      userId: Math.round(Math.random() * 1000).toString()
-    };
-    this.authChange.next(true);
-    this.router.navigate(['/admin']);
+   return this.fireAuth.auth.signInAndRetrieveDataWithEmailAndPassword(authData.email, authData.password)
+     .then(result => {
+       console.log(result);
+
+     }).catch(error => {
+       console.log(error);
+     });
   }
 
-  getUser() {
-    return this.admin;
-  }
   isAuth() {
-    return this.admin !== null;
-  }
+    return this.isAuthenticated;
+    }
+
   logOut() {
-    this.admin = null;
-    this.authChange.next(false);
-    this.router.navigate(['/login']);
+    this.fireAuth.auth.signOut();
   }
+  getAuthState() {
+    return this.fireAuth.authState;
+  }
+  getAuthUser(): Observable<Admin> {
+    return this.fireAuth.authState.map(authState => {
+      return {email: authState.email, userId: authState.uid};
+    });
+  }
+
 }

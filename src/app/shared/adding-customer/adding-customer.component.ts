@@ -13,8 +13,7 @@ export class AddingCustomerComponent implements OnInit {
   customer: Customer[];
 
 
-  constructor(private customerService: CustomerService,
-              private fb: FormBuilder) {
+  constructor(private customerService: CustomerService) {
   }
 
   ngOnInit() {
@@ -31,13 +30,13 @@ export class AddingCustomerComponent implements OnInit {
   }
 
   onSave() {
-      this.customerService.createCustomer({
+    this.customerService.createCustomer({
       name: this.addCustomerForm.value.name,
       address: this.addCustomerForm.value.address,
       zipCode: this.addCustomerForm.value.zipCode,
       city: this.addCustomerForm.value.city,
       vat_number: this.addCustomerForm.value.vatNumber,
-      number_of_consumers:  this.addCustomerForm.value.numberOfConsumer,
+      number_of_consumers: this.addCustomerForm.value.numberOfConsumer,
       member_number: this.addCustomerForm.value.memberNumber,
       cubic_meters_pumped: this.addCustomerForm.value.cubicMetersPump,
     });

@@ -7,8 +7,9 @@ import { AppRoutingModule } from './/app-routing.module';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {
+  MAT_DIALOG_DATA,
   MatButtonModule,
-  MatCardModule, MatDialogModule,
+  MatCardModule, MatDialogModule, MatDialogRef,
   MatFormFieldModule,
   MatGridListModule,
   MatIconModule,
@@ -17,7 +18,7 @@ import {
   MatSidenavModule,
   MatSortModule,
   MatTableModule
-} from '@angular/material';
+} from "@angular/material";
 
 import { AdminComponent } from './admin/admin.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -79,7 +80,13 @@ import { EditDialogComponent } from './shared/edit-dialog/edit-dialog.component'
 
 
   ],
-  providers: [AuthService, AngularFirestore, AuthGuard, CustomerService],
+  providers: [AuthService,
+    AngularFirestore,
+    AuthGuard,
+    CustomerService,
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] },
+  ],
   bootstrap: [AppComponent],
   entryComponents: [EditDialogComponent]
 })

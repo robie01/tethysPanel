@@ -40,16 +40,19 @@
       <td cdk-cell *cdkCellDef="let element">{{element.cubic_meters_pumped}}</td>
     </ng-container>
 
-    <ng-container cdkColumnDef="edit">
-      <th cdk-header-cell *cdkHeaderCellDef>Edit</th>
-      <td cdk-cell *cdkCellDef="let element">{{element.edit}}</td>
+    <ng-container cdkColumnDef="functions">
+      <th cdk-header-cell *cdkHeaderCellDef>Functions</th>
+      <td cdk-cell *cdkCellDef="let element">{{element.functions}}
+        <button mat-raised-button color="primary" (click)="openDialog(element)">Edit</button>
+      </td>
+
     </ng-container>
 
     <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
     <tr cdk-row *cdkRowDef="let row; columns: displayedColumns"></tr>
   </table>
-  <mat-paginator [pageSize]="10"  [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
-
+  <mat-paginator [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
   </mat-paginator>
 </div>
 

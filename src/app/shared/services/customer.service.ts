@@ -1,15 +1,30 @@
-import { Injectable } from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {Customer} from '../customer.model';
 import {AngularFirestore} from 'angularfire2/firestore';
+import {AuthService} from '../../auth/auth-service';
+import {Observable} from 'rxjs';
+import 'rxjs/add/operator/map';
+import {Admin} from "../../auth/admin.model";
+import {forEach} from "@angular/router/src/utils/collection";
+
+
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
-  private customers: Customer[];
+
+  public customer: Customer;
+  public customerList: Observable<Customer[]> = new Observable<Customer[]>();
 
 
-  constructor(private db: AngularFirestore) { }
+  constructor(private db: AngularFirestore,
+              private authService: AuthService) {
+    this.fetchCustomer();
+  }
+
   createCustomer(customer: Customer) {
     const customerCollection = this.db.collection<Customer>('Customer');
     customerCollection.add({
@@ -19,14 +34,15 @@ export class CustomerService {
     });
   }
   fetchCustomer() {
-    // this.db.collection<Customer>('Customer').valueChanges().subscribe(data => {
-    //   this.customers = data;
-    // });
+     // This has been made in data table component.
+    this.customerList = this.db.collection<Customer>('Customer').valueChanges();
+
   }
   // deleting customer
   deleteCustomer() {
   }
   // updating data of customer
-  updateCustomer() {
+  editCustomer() {
   }
+
 }
