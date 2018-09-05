@@ -48,7 +48,9 @@ export class CustomerService implements OnInit {
 
   updateCustomer(customer: Customer) {
     console.log('customer', customer);
-    this.customerCollectionRef.doc(customer.customerId).update(customer);
+    this.customerCollectionRef.doc(customer.customerId).update(customer).then(() => {
+      console.log('updated');
+    });
 
 
   }

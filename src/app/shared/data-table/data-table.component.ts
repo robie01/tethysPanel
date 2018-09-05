@@ -51,4 +51,8 @@ export class DataTableComponent implements AfterViewInit {
     console.log(dialogRef);
   }
 
+  delete(customer) {
+    this.customerService.deleteCustomer(customer);
+  }
+
 }

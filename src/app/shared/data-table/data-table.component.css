@@ -2,8 +2,13 @@ table {
   width: 100%;
   text-align: justify;
 }
+
 .header-container {
   height: 400px;
   overflow: auto;
+}
+
+.button-delete {
+  margin-left: 10px;
 }
 

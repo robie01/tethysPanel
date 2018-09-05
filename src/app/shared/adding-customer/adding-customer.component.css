@@ -4,14 +4,18 @@
   padding-right: 45px;
   margin-left: 500px;
 }
+
 .column {
   float: left;
   width: 50%;
   padding: 10px;
   height: 400px;
 }
+
 .button-cancel {
   margin-left: 10px;
-}.button-save {
+}
+
+.button-save {
   margin-left: 20px;
- }
+}

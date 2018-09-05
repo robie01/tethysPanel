@@ -43,7 +43,10 @@
     <ng-container cdkColumnDef="functions">
       <th cdk-header-cell *cdkHeaderCellDef>Functions</th>
       <td cdk-cell *cdkCellDef="let element">{{element.functions}}
-        <button mat-raised-button color="primary" (click)="openDialog(element)">Edit</button>
+        <p>
+        <button  mat-raised-button color="primary" (click)="openDialog(element)">edit</button>
+        <button class="button-delete" mat-raised-button color="warn" (click)="delete(element)">delete</button>
+        </p>
       </td>
 
     </ng-container>

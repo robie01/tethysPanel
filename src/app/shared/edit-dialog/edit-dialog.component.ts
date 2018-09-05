@@ -4,6 +4,7 @@ import {CustomerService} from '../services/customer.service';
 import {Customer} from '../customer.model';
 import {FormControl, FormGroup} from '@angular/forms';
 import {AngularFirestore} from 'angularfire2/firestore';
+import {clearImmediate} from "timers";
 
 @Component({
   selector: 'app-edit-dialog',
@@ -35,11 +36,11 @@ export class EditDialogComponent implements OnInit {
   }
 
   closeDialog() {
-    this.dialogRef.close();
+      this.dialogRef.close();
   }
 
 
-  updateCustomer() {
+  saveUpdateCustomer() {
     this.customerService.updateCustomer({
       name: this.editForm.value.name,
       address: this.editForm.value.address,
