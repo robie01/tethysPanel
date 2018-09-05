@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {getMatIconFailedToSanitizeLiteralError, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {CustomerService} from '../services/customer.service';
 import {Customer} from '../customer.model';
 import {FormControl, FormGroup} from '@angular/forms';
@@ -21,11 +21,11 @@ export class EditDialogComponent implements OnInit {
               public dialogRef: MatDialogRef<EditDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) {
     this.editForm = new FormGroup({
-      name: new FormControl(''),
-      address: new FormControl(''),
-      zipCode: new FormControl(''),
-      city: new FormControl(''),
-      number_of_consumers: new FormControl('')
+      name: new FormControl(this.data.name),
+      address: new FormControl(this.data.address),
+      zipCode: new FormControl(this.data.zipCode),
+      city: new FormControl(this.data.city),
+      number_of_consumers: new FormControl(this.data.number_of_consumers)
     });
   }
 
@@ -39,10 +39,16 @@ export class EditDialogComponent implements OnInit {
   }
 
 
-  saveCustomer(): void {
-    this.db.collection('Customer').doc(this.data.uid).update({name: this.customer.name});
-    this.dialogRef.close();
-    console.log('click' + name);
+  updateCustomer() {
+    this.customerService.updateCustomer({
+      name: this.editForm.value.name,
+      address: this.editForm.value.address,
+      zipCode: this.editForm.value.zipCode,
+      city: this.editForm.value.city,
+      number_of_consumers: this.editForm.value.number_of_consumers,
+      customerId: this.customer.customerId
+    });
   }
+
 
 }

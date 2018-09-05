@@ -17,7 +17,6 @@ import {map} from 'rxjs/internal/operators';
 export class DataTableComponent implements AfterViewInit {
   displayedColumns = ['name', 'address', 'zipCode', 'vat', 'numberOfConsumer', 'memberNumber', 'usageOfWater' , 'functions'];
   dataSource = new MatTableDataSource<Customer>();
-  customerListFetchFromCustomerService: Customer[];
 
 
   @ViewChild(MatSort) sort: MatSort;
@@ -27,23 +26,16 @@ export class DataTableComponent implements AfterViewInit {
               private db: AngularFirestore,
               private dialog: MatDialog) {
 
+
   }
 
   ngAfterViewInit() {
-    let app = this;
-
-    app.customerService.customerList.subscribe(data => {
+    this.customerService.customerList.subscribe(data => {
+      console.log(data);
       this.dataSource = new MatTableDataSource<Customer>(data);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
     });
-
-
-
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-
-
-
-
     }
 
 
@@ -56,6 +48,7 @@ export class DataTableComponent implements AfterViewInit {
       width: '400px',
       data: customer
     });
+    console.log(dialogRef);
   }
 
 }

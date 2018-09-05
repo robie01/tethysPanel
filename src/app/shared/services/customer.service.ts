@@ -1,23 +1,18 @@
-import {Inject, Injectable} from '@angular/core';
+import {Inject, Injectable, OnInit} from '@angular/core';
 import {Customer} from '../customer.model';
-import {AngularFirestore} from 'angularfire2/firestore';
+import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore';
 import {AuthService} from '../../auth/auth-service';
 import {Observable} from 'rxjs';
 import 'rxjs/add/operator/map';
-import {Admin} from "../../auth/admin.model";
-import {forEach} from "@angular/router/src/utils/collection";
-
-
-
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class CustomerService {
-
-  public customer: Customer;
+export class CustomerService implements OnInit {
+  customer: Customer;
   public customerList: Observable<Customer[]> = new Observable<Customer[]>();
+  customerCollectionRef: AngularFirestoreCollection<any> =  this.db.collection('/Customer/');
 
 
   constructor(private db: AngularFirestore,
@@ -25,24 +20,38 @@ export class CustomerService {
     this.fetchCustomer();
   }
 
+  ngOnInit() {
+
+  }
   createCustomer(customer: Customer) {
-    const customerCollection = this.db.collection<Customer>('Customer');
-    customerCollection.add({
-      name: customer.name, address: customer.address, zipCode: customer.zipCode, city: customer.city,
-      number_of_consumers: customer.number_of_consumers,
-      cubic_meters_pumped: customer.cubic_meters_pumped, member_number: customer.member_number, vat_number: customer.vat_number
+    this.customerCollectionRef.add(customer).then((customerRef) => {
+      this.customerCollectionRef.doc(customerRef.id).update({
+        customerId: customerRef.id
+      });
+    }).catch((err) => {
+      console.log(err);
     });
   }
+
+
   fetchCustomer() {
-     // This has been made in data table component.
     this.customerList = this.db.collection<Customer>('Customer').valueChanges();
 
   }
   // deleting customer
-  deleteCustomer() {
+  deleteCustomer(customer: Customer) {
+    this.customerCollectionRef.doc(customer.customerId).delete().then(() => {
+      console.log('deleted');
+    });
   }
-  // updating data of customer
-  editCustomer() {
+
+
+  updateCustomer(customer: Customer) {
+    console.log('customer', customer);
+    this.customerCollectionRef.doc(customer.customerId).update(customer);
+
+
   }
+
 
 }

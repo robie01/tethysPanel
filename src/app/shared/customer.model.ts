@@ -1,15 +1,16 @@
 export interface Customer {
+  customerId?: string;
   name: string;
   address: string;
   city: string;
   zipCode: string;
-  vat_number: number;
+  vat_number?: number;
   number_of_consumers: number;
-  cubic_meters_pumped: number;
+  cubic_meters_pumped?: number;
   active?: boolean;
   last_modified?: Date;
   created?: Date;
-  member_number: number;
+  member_number?: number;
 
 }
 

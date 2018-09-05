@@ -1,13 +1,13 @@
 <mat-card>
   <div id="position">
-    <form [formGroup]="editForm" (ngSubmit)="saveCustomer()">
+    <form [formGroup]="editForm" (ngSubmit)="updateCustomer(customer)">
     <mat-card-title>
       <em>Edit Customer</em>
     </mat-card-title>
     <mat-card-content>
       <mat-form-field>
 
-        <input matInput placeholder="Name" value="{{customer.name}}" formControlName="name">
+        <input matInput placeholder="Name" value="{{customer.name}}"  formControlName="name">
       </mat-form-field>
       <p>
         <mat-form-field>

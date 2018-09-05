@@ -30,7 +30,7 @@ export class AddingCustomerComponent implements OnInit {
   }
 
   onSave() {
-    this.customerService.createCustomer({
+    const customer = this.customerService.createCustomer({
       name: this.addCustomerForm.value.name,
       address: this.addCustomerForm.value.address,
       zipCode: this.addCustomerForm.value.zipCode,
@@ -40,7 +40,7 @@ export class AddingCustomerComponent implements OnInit {
       member_number: this.addCustomerForm.value.memberNumber,
       cubic_meters_pumped: this.addCustomerForm.value.cubicMetersPump,
     });
-    console.log(this.addCustomerForm.value.vatNumber);
+    console.log(customer);
   }
 
 }

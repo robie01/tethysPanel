@@ -57,10 +57,17 @@ export class AuthService {
   getAuthState() {
     return this.fireAuth.authState;
   }
-  getAuthUser(): Observable<Admin> {
-    return this.fireAuth.authState.map(authState => {
-      return {email: authState.email, userId: authState.uid};
-    });
-  }
+  // getAuthUser(): Observable<Admin> {
+  //   return this.fireAuth.authState.map(authState => {
+  //     return {email: authState.email, userId: authState.uid};
+  //   });
+  // }
+  // getAuthCustomer() {
+  //   this.fireAuth.authState.subscribe(customer => {
+  //     if (customer) {
+  //       this.customer.uid = customer.uid;
+  //     }
+  //   });
+  // }
 
 }
