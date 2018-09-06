@@ -2,7 +2,14 @@
   <mat-sidenav mode="side" [opened]="sideNavStatus" role="navigation">
     <br>
     <div style="margin-left: 30px">
-      <a routerLink="/">Home</a>
+      <a  mat-list-item routerLink="/">
+        Home
+      </a>
+      <br>
+      <a mat-list-item routerLink="/table">
+        Customer
+      </a>
+
     </div>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -12,6 +19,7 @@
     <router-outlet>
     </router-outlet>
   </mat-sidenav-content>
-</mat-sidenav-container>
+</mat-sidenav-container
+>
 
 

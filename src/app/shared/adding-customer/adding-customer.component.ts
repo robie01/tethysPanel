@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CustomerService} from '../services/customer.service';
 import {Customer} from '../customer.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-adding-customer',
@@ -13,7 +14,8 @@ export class AddingCustomerComponent implements OnInit {
   customer: Customer[];
 
 
-  constructor(private customerService: CustomerService) {
+  constructor(private customerService: CustomerService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -40,6 +42,7 @@ export class AddingCustomerComponent implements OnInit {
       member_number: this.addCustomerForm.value.memberNumber,
       cubic_meters_pumped: this.addCustomerForm.value.cubicMetersPump,
     });
+    this.router.navigate(['/table']);
     console.log(customer);
   }
 

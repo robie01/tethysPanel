@@ -17,7 +17,7 @@ export class CustomerService implements OnInit {
 
   constructor(private db: AngularFirestore,
               private authService: AuthService) {
-    this.fetchCustomer();
+    this.getCustomer();
   }
 
   ngOnInit() {
@@ -34,7 +34,7 @@ export class CustomerService implements OnInit {
   }
 
 
-  fetchCustomer() {
+  getCustomer() {
     this.customerList = this.db.collection<Customer>('Customer').valueChanges();
 
   }

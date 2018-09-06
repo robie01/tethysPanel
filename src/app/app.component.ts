@@ -9,11 +9,15 @@ import {AuthService} from './auth/auth-service';
 })
 export class AppComponent implements OnInit {
   sideNavStatus = false;
+  isAuth = false;
   constructor (private authService: AuthService) {
   }
 
   ngOnInit() {
-    // this.authService.initAuthListener();
+    this.authService.initAuthListener();
+    this.authService.authChange.subscribe(authStatus => {
+      this.isAuth = authStatus;
+    });
   }
   toggle() {
     this.sideNavStatus = !this.sideNavStatus;

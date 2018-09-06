@@ -1,10 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {getMatIconFailedToSanitizeLiteralError, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {CustomerService} from '../services/customer.service';
 import {Customer} from '../customer.model';
 import {FormControl, FormGroup} from '@angular/forms';
 import {AngularFirestore} from 'angularfire2/firestore';
-import {clearImmediate} from "timers";
+
 
 @Component({
   selector: 'app-edit-dialog',

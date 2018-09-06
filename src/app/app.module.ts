@@ -2,23 +2,25 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
+import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { AppRoutingModule } from './/app-routing.module';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {
   MAT_DIALOG_DATA,
   MatButtonModule,
-  MatCardModule, MatDialogModule, MatDialogRef,
+  MatCardModule, MatDialogModule,
+  MatDialogRef,
   MatFormFieldModule,
   MatGridListModule,
   MatIconModule,
   MatInputModule,
+  MatListModule,
   MatPaginatorModule,
   MatSidenavModule,
   MatSortModule,
   MatTableModule
-} from "@angular/material";
+} from '@angular/material';
 
 import { AdminComponent } from './admin/admin.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -38,6 +40,7 @@ import { TestComponent } from './test/test.component';
 import {CustomerService} from './shared/services/customer.service';
 import { DataTableComponent } from './shared/data-table/data-table.component';
 import { EditDialogComponent } from './shared/edit-dialog/edit-dialog.component';
+import { SidenavlistComponent } from './shared/sidenavlist/sidenavlist.component';
 
 
 @NgModule({
@@ -51,6 +54,7 @@ import { EditDialogComponent } from './shared/edit-dialog/edit-dialog.component'
     TestComponent,
     DataTableComponent,
     EditDialogComponent,
+    SidenavlistComponent,
 
   ],
   imports: [
@@ -74,11 +78,9 @@ import { EditDialogComponent } from './shared/edit-dialog/edit-dialog.component'
     AngularFireAuthModule,
     MatGridListModule,
     MatSortModule,
-    MatPaginatorModule
-
-
-
-
+    MatPaginatorModule,
+    MatListModule,
+    FlexLayoutModule
   ],
   providers: [AuthService,
     AngularFirestore,

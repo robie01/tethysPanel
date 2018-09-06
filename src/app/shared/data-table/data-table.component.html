@@ -1,6 +1,9 @@
-<div fxLayoutAlign="center center">
-  <mat-form-field fxFlex="20%">
-    <input matInput type="text" placeholder="Search" (keyup)="doFilter($event.target.value)">
+<div fxLayoutAlign="center center" id="margin">
+  <div class="button-add">
+    <button mat-raised-button color="primary" routerLink="/add-customer">Add Customer</button>
+  </div>
+  <mat-form-field id="marginSearch">
+    <input  matInput type="text" placeholder="Search" (keyup)="doFilter($event.target.value)">
   </mat-form-field>
 </div>
 <div class="header-container" mat-elevation-z8>
@@ -43,10 +46,8 @@
     <ng-container cdkColumnDef="functions">
       <th cdk-header-cell *cdkHeaderCellDef>Functions</th>
       <td cdk-cell *cdkCellDef="let element">{{element.functions}}
-        <p>
         <button  mat-raised-button color="primary" (click)="openDialog(element)">edit</button>
         <button class="button-delete" mat-raised-button color="warn" (click)="delete(element)">delete</button>
-        </p>
       </td>
 
     </ng-container>

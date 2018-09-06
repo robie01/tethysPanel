@@ -11,4 +11,9 @@ table {
 .button-delete {
   margin-left: 10px;
 }
-
+#margin{
+  margin-right: 1400px;
+}
+#marginSearch {
+  padding-left: 100px;
+}

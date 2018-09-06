@@ -38,8 +38,9 @@ export class AuthService {
 
 
   login(authData: AuthData) {
-   return this.fireAuth.auth.signInAndRetrieveDataWithEmailAndPassword(authData.email, authData.password)
+   return this.fireAuth.auth.signInWithEmailAndPassword(authData.email, authData.password)
      .then(result => {
+       this.initAuthListener();
        console.log(result);
 
      }).catch(error => {
@@ -57,17 +58,5 @@ export class AuthService {
   getAuthState() {
     return this.fireAuth.authState;
   }
-  // getAuthUser(): Observable<Admin> {
-  //   return this.fireAuth.authState.map(authState => {
-  //     return {email: authState.email, userId: authState.uid};
-  //   });
-  // }
-  // getAuthCustomer() {
-  //   this.fireAuth.authState.subscribe(customer => {
-  //     if (customer) {
-  //       this.customer.uid = customer.uid;
-  //     }
-  //   });
-  // }
 
 }
