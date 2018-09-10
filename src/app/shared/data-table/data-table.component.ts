@@ -8,6 +8,8 @@ import 'rxjs';
 
 import {EditDialogComponent} from '../edit-dialog/edit-dialog.component';
 import {map} from 'rxjs/internal/operators';
+import {DeleteConfirmationDialogComponent} from "../delete-confirmation-dialog/delete-confirmation-dialog.component";
+
 
 @Component({
   selector: 'app-data-table',
@@ -17,6 +19,7 @@ import {map} from 'rxjs/internal/operators';
 export class DataTableComponent implements AfterViewInit {
   displayedColumns = ['name', 'address', 'zipCode', 'vat', 'numberOfConsumer', 'memberNumber', 'usageOfWater' , 'functions'];
   dataSource = new MatTableDataSource<Customer>();
+  customer: Customer;
 
 
   @ViewChild(MatSort) sort: MatSort;
@@ -30,7 +33,7 @@ export class DataTableComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.customerService.customerList.subscribe(data => {
+    this.customerService.getCustomer().subscribe(data => {
       console.log(data);
       this.dataSource = new MatTableDataSource<Customer>(data);
       this.dataSource.sort = this.sort;
@@ -43,16 +46,24 @@ export class DataTableComponent implements AfterViewInit {
     this.dataSource.filter = searchValue.trim().toLowerCase();
   }
 
-  openDialog(customer) {
+  openDialogEdit(customer) {
     const dialogRef = this.dialog.open(EditDialogComponent, {
       width: '400px',
-      data: customer
+      data: customer,
     });
-    console.log(dialogRef);
   }
 
-  delete(customer) {
-    this.customerService.deleteCustomer(customer);
+
+  openDeleteDialog(customer) {
+    const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {data: {
+        customer: customer,
+        width: '400px',
+        height: '200px'
+      }
+    });
   }
+
+
+
 
 }

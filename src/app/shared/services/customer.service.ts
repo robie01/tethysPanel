@@ -1,6 +1,6 @@
 import {Inject, Injectable, OnInit} from '@angular/core';
 import {Customer} from '../customer.model';
-import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore';
+import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from "angularfire2/firestore";
 import {AuthService} from '../../auth/auth-service';
 import {Observable} from 'rxjs';
 import 'rxjs/add/operator/map';
@@ -9,20 +9,26 @@ import 'rxjs/add/operator/map';
 @Injectable({
   providedIn: 'root'
 })
-export class CustomerService implements OnInit {
+export class CustomerService {
   customer: Customer;
-  public customerList: Observable<Customer[]> = new Observable<Customer[]>();
-  customerCollectionRef: AngularFirestoreCollection<any> =  this.db.collection('/Customer/');
+  customerList: Observable<Customer[]>;
+  customerCollectionRef: AngularFirestoreCollection<Customer>;
+  customerDoc: AngularFirestoreDocument<Customer>;
 
 
   constructor(private db: AngularFirestore,
               private authService: AuthService) {
-    this.getCustomer();
+
+    this.customerCollectionRef = this.db.collection('Customer');
+    this.customerList = this.customerCollectionRef.snapshotChanges().map(changes => {
+      return changes.map(a => {
+        const data = a.payload.doc.data() as Customer;
+        data.customerId = a.payload.doc.id;
+        return data;
+      });
+    });
   }
 
-  ngOnInit() {
-
-  }
   createCustomer(customer: Customer) {
     this.customerCollectionRef.add(customer).then((customerRef) => {
       this.customerCollectionRef.doc(customerRef.id).update({
@@ -35,14 +41,12 @@ export class CustomerService implements OnInit {
 
 
   getCustomer() {
-    this.customerList = this.db.collection<Customer>('Customer').valueChanges();
-
+    return this.customerList;
   }
   // deleting customer
   deleteCustomer(customer: Customer) {
-    this.customerCollectionRef.doc(customer.customerId).delete().then(() => {
-      console.log('deleted');
-    });
+   this.customerDoc = this.db.doc('/Customer/' + customer);
+   this.customerDoc.delete();
   }
 
 

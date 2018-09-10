@@ -15,5 +15,8 @@ table {
   margin-right: 1400px;
 }
 #marginSearch {
-  padding-left: 100px;
+  padding-left: 75px;
+}
+.button-add {
+  margin-left: 200px;
 }

@@ -34,13 +34,13 @@ import { AddingCustomerComponent } from './shared/adding-customer/adding-custome
 import {AngularFireModule} from 'angularfire2';
 import {environment} from '../environments/environment';
 import {AngularFireAuthModule} from 'angularfire2/auth';
-import {AngularFirestore} from 'angularfire2/firestore';
+import {AngularFirestore, AngularFirestoreModule} from 'angularfire2/firestore';
 import {AuthGuard} from './auth/auth.guard';
 import { TestComponent } from './test/test.component';
 import {CustomerService} from './shared/services/customer.service';
 import { DataTableComponent } from './shared/data-table/data-table.component';
 import { EditDialogComponent } from './shared/edit-dialog/edit-dialog.component';
-import { SidenavlistComponent } from './shared/sidenavlist/sidenavlist.component';
+import { DeleteConfirmationDialogComponent } from './shared/delete-confirmation-dialog/delete-confirmation-dialog.component';
 
 
 @NgModule({
@@ -54,7 +54,7 @@ import { SidenavlistComponent } from './shared/sidenavlist/sidenavlist.component
     TestComponent,
     DataTableComponent,
     EditDialogComponent,
-    SidenavlistComponent,
+    DeleteConfirmationDialogComponent,
 
   ],
   imports: [
@@ -80,7 +80,8 @@ import { SidenavlistComponent } from './shared/sidenavlist/sidenavlist.component
     MatSortModule,
     MatPaginatorModule,
     MatListModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    AngularFirestoreModule
   ],
   providers: [AuthService,
     AngularFirestore,
@@ -90,6 +91,6 @@ import { SidenavlistComponent } from './shared/sidenavlist/sidenavlist.component
     { provide: MAT_DIALOG_DATA, useValue: [] },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [EditDialogComponent]
+  entryComponents: [EditDialogComponent, DeleteConfirmationDialogComponent]
 })
 export class AppModule { }

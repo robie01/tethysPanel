@@ -7,7 +7,7 @@
   </mat-form-field>
 </div>
 <div class="header-container" mat-elevation-z8>
-  <table cdk-table [dataSource]="dataSource" bgcolor="#d3d3d3" matSort>
+  <table #table cdk-table [dataSource]="dataSource" bgcolor="#d3d3d3" matSort>
     <ng-container cdkColumnDef="name">
       <th cdk-header-cell *cdkHeaderCellDef mat-sort-header>Name</th>
       <td cdk-cell *cdkCellDef="let element">{{element.name}}</td>
@@ -43,11 +43,11 @@
       <td cdk-cell *cdkCellDef="let element">{{element.cubic_meters_pumped}}</td>
     </ng-container>
 
-    <ng-container cdkColumnDef="functions">
+    <ng-container cdkColumnDef="functions" >
       <th cdk-header-cell *cdkHeaderCellDef>Functions</th>
       <td cdk-cell *cdkCellDef="let element">{{element.functions}}
-        <button  mat-raised-button color="primary" (click)="openDialog(element)">edit</button>
-        <button class="button-delete" mat-raised-button color="warn" (click)="delete(element)">delete</button>
+        <button  mat-raised-button color="primary" (click)="openDialogEdit(element)">edit</button>
+        <button class="button-delete" mat-raised-button color="warn" (click)="openDeleteDialog(element)">delete</button>
       </td>
 
     </ng-container>
