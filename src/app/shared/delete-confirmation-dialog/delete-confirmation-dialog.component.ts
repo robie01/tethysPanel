@@ -1,7 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {Customer} from '../customer.model';
-import {MAT_DIALOG_DATA} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {CustomerService} from '../services/customer.service';
+import {Router} from '@angular/router';
+
 
 
 @Component({
@@ -14,16 +16,21 @@ export class DeleteConfirmationDialogComponent implements OnInit {
   customer: Customer;
 
 
-  constructor(@Inject(MAT_DIALOG_DATA) public passedData: any,
+  constructor(public dialogRef: MatDialogRef<DeleteConfirmationDialogComponent>,
+              @Inject(MAT_DIALOG_DATA) public passedData: any,
               private customerService: CustomerService) { }
 
   ngOnInit() {
     console.log(this.passedData);
-    this.customer = this.passedData.customer;
+    this.customer = this.passedData;
   }
 
-  yesDelete(customer) {
+  confirmDelete(customer) {
       this.customerService.deleteCustomer(customer.customerId);
+      this.cancelDelete(customer);
       console.log('delete' + customer);
+  }
+  cancelDelete(customer) {
+    this.dialogRef.close(customer);
   }
 }

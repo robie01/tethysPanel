@@ -16,7 +16,7 @@ import {DeleteConfirmationDialogComponent} from "../delete-confirmation-dialog/d
   templateUrl: './data-table.component.html',
   styleUrls: ['./data-table.component.css']
 })
-export class DataTableComponent implements AfterViewInit {
+export class DataTableComponent implements AfterViewInit{
   displayedColumns = ['name', 'address', 'zipCode', 'vat', 'numberOfConsumer', 'memberNumber', 'usageOfWater' , 'functions'];
   dataSource = new MatTableDataSource<Customer>();
   customer: Customer;
@@ -57,9 +57,13 @@ export class DataTableComponent implements AfterViewInit {
   openDeleteDialog(customer) {
     const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {data: {
         customer: customer,
-        width: '400px',
-        height: '200px'
+        // width: '400px',
+        // height: '200px'
       }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.customer = result;
     });
   }
 

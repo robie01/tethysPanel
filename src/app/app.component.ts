@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.initAuthListener();
+    // this.authService.initAuthListener();
     this.authService.authChange.subscribe(authStatus => {
       this.isAuth = authStatus;
     });

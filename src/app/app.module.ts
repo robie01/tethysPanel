@@ -18,6 +18,7 @@ import {
   MatListModule,
   MatPaginatorModule,
   MatSidenavModule,
+  MatSnackBarModule,
   MatSortModule,
   MatTableModule
 } from '@angular/material';
@@ -81,7 +82,8 @@ import { DeleteConfirmationDialogComponent } from './shared/delete-confirmation-
     MatPaginatorModule,
     MatListModule,
     FlexLayoutModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    MatSnackBarModule
   ],
   providers: [AuthService,
     AngularFirestore,

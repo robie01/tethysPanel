@@ -12,8 +12,8 @@
     </h4>
   </mat-dialog-content>
   <mat-dialog-actions id="position">
-    <button mat-raised-button (click)="yesDelete(passedData.customer)">Yes</button>
-    <button mat-raised-button>No</button>
+    <button mat-raised-button (click)="confirmDelete(passedData.customer)">Yes</button>
+    <button mat-raised-button (click)="cancelDelete()">No</button>
   </mat-dialog-actions>
 </div>
 

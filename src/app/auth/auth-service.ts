@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {Customer} from '../shared/customer.model';
 import {User} from 'firebase';
+import {MatSnackBar} from '@angular/material';
 
 
 @Injectable()
@@ -18,7 +19,8 @@ export class AuthService {
 
 
   constructor(private router: Router,
-              private fireAuth: AngularFireAuth) {
+              private fireAuth: AngularFireAuth,
+              private snackBar: MatSnackBar) {
 
   }
   // for future use, global listener for authenticated user.
@@ -44,6 +46,9 @@ export class AuthService {
        console.log(result);
 
      }).catch(error => {
+       this.snackBar.open(error.message, null, {
+         duration: 3000
+       });
        console.log(error);
      });
   }
