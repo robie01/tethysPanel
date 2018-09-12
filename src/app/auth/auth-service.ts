@@ -7,6 +7,7 @@ import {AngularFireAuth} from 'angularfire2/auth';
 import {Customer} from '../shared/customer.model';
 import {User} from 'firebase';
 import {MatSnackBar} from '@angular/material';
+import {UiService} from '../shared/services/ui.service';
 
 
 @Injectable()
@@ -20,7 +21,8 @@ export class AuthService {
 
   constructor(private router: Router,
               private fireAuth: AngularFireAuth,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private uiService: UiService) {
 
   }
   // for future use, global listener for authenticated user.
@@ -40,12 +42,15 @@ export class AuthService {
 
 
   login(authData: AuthData) {
+    this.uiService.loadingStateChange.next(true);
    return this.fireAuth.auth.signInWithEmailAndPassword(authData.email, authData.password)
      .then(result => {
+       this.uiService.loadingStateChange.next(false);
        this.initAuthListener();
        console.log(result);
 
      }).catch(error => {
+       this.uiService.loadingStateChange.next(false);
        this.snackBar.open(error.message, null, {
          duration: 3000
        });

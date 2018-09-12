@@ -17,6 +17,7 @@ import {
   MatInputModule,
   MatListModule,
   MatPaginatorModule,
+  MatProgressSpinnerModule,
   MatSidenavModule,
   MatSnackBarModule,
   MatSortModule,
@@ -42,6 +43,7 @@ import {CustomerService} from './shared/services/customer.service';
 import { DataTableComponent } from './shared/data-table/data-table.component';
 import { EditDialogComponent } from './shared/edit-dialog/edit-dialog.component';
 import { DeleteConfirmationDialogComponent } from './shared/delete-confirmation-dialog/delete-confirmation-dialog.component';
+import {UiService} from './shared/services/ui.service';
 
 
 @NgModule({
@@ -83,12 +85,15 @@ import { DeleteConfirmationDialogComponent } from './shared/delete-confirmation-
     MatListModule,
     FlexLayoutModule,
     AngularFirestoreModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule
+
   ],
   providers: [AuthService,
     AngularFirestore,
     AuthGuard,
     CustomerService,
+    UiService,
     { provide: MatDialogRef, useValue: {} },
     { provide: MAT_DIALOG_DATA, useValue: [] },
   ],
