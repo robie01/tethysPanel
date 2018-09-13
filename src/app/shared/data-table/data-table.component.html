@@ -1,63 +1,65 @@
-<div fxLayoutAlign="center center" id="margin">
-  <div class="button-add">
-    <button mat-raised-button color="primary" routerLink="/add-customer">Add Customer</button>
+<div>
+  <div fxLayoutAlign="center center" id="margin">
+    <div class="button-add">
+      <button mat-raised-button color="primary" routerLink="/add-customer">Add Customer</button>
+    </div>
+    <mat-form-field id="marginSearch">
+      <input matInput type="text" placeholder="Search" (keyup)="doFilter($event.target.value)">
+    </mat-form-field>
   </div>
-  <mat-form-field id="marginSearch">
-    <input  matInput type="text" placeholder="Search" (keyup)="doFilter($event.target.value)">
-  </mat-form-field>
+  <div class="header-container" mat-elevation-z8>
+    <table #table cdk-table [dataSource]="dataSource" bgcolor="#d3d3d3" matSort>
+      <ng-container cdkColumnDef="name">
+        <th cdk-header-cell *cdkHeaderCellDef mat-sort-header>Name</th>
+        <td cdk-cell *cdkCellDef="let element">{{element.name}}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="address">
+        <th cdk-header-cell *cdkHeaderCellDef class="padding" mat-sort-header>Address</th>
+        <td cdk-cell *cdkCellDef="let element">{{element.address}}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="zipCode">
+        <th cdk-header-cell *cdkHeaderCellDef mat-sort-header>Zip code</th>
+        <td cdk-cell *cdkCellDef="let element">{{element.zipCode}}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="vat">
+        <th cdk-header-cell *cdkHeaderCellDef mat-sort-header>Vat number</th>
+        <td cdk-cell *cdkCellDef="let element">{{element.vat_number}}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="numberOfConsumer">
+        <th cdk-header-cell *cdkHeaderCellDef mat-sort-header>Number of Consumer</th>
+        <td cdk-cell *cdkCellDef="let element">{{element.number_of_consumers}}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="memberNumber">
+        <th cdk-header-cell *cdkHeaderCellDef mat-sort-header>Member Number</th>
+        <td cdk-cell *cdkCellDef="let element">{{element.member_number}}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="usageOfWater" >
+        <th cdk-header-cell *cdkHeaderCellDef mat-sort-header>Usage of water</th>
+        <td cdk-cell *cdkCellDef="let element">{{element.cubic_meters_pumped}}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="functions" >
+        <th cdk-header-cell *cdkHeaderCellDef>Functions</th>
+        <td cdk-cell *cdkCellDef="let element">{{element.functions}}
+          <button mat-raised-button color="primary" (click)="openDialogEdit(element)">edit</button>
+          <button class="button-delete" mat-raised-button color="warn" (click)="openDeleteDialog(element)">delete
+          </button>
+        </td>
+
+      </ng-container>
+
+      <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+      <tr cdk-row *cdkRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator [pageSize]="10"
+                   [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+    </mat-paginator>
+  </div>
 </div>
-<div class="header-container" mat-elevation-z8>
-  <table #table cdk-table [dataSource]="dataSource" bgcolor="#d3d3d3" matSort>
-    <ng-container cdkColumnDef="name">
-      <th cdk-header-cell *cdkHeaderCellDef mat-sort-header>Name</th>
-      <td cdk-cell *cdkCellDef="let element">{{element.name}}</td>
-    </ng-container>
-
-    <ng-container cdkColumnDef="address">
-      <th cdk-header-cell *cdkHeaderCellDef class="padding">Address</th>
-      <td cdk-cell *cdkCellDef="let element">{{element.address}}</td>
-    </ng-container>
-
-    <ng-container cdkColumnDef="zipCode">
-      <th cdk-header-cell *cdkHeaderCellDef>Zip code</th>
-      <td cdk-cell *cdkCellDef="let element">{{element.zipCode}}</td>
-    </ng-container>
-
-    <ng-container cdkColumnDef="vat">
-      <th cdk-header-cell *cdkHeaderCellDef>Vat number</th>
-      <td cdk-cell *cdkCellDef="let element">{{element.vat_number}}</td>
-    </ng-container>
-
-    <ng-container cdkColumnDef="numberOfConsumer">
-      <th cdk-header-cell *cdkHeaderCellDef>Number of Consumer</th>
-      <td cdk-cell *cdkCellDef="let element">{{element.number_of_consumers}}</td>
-    </ng-container>
-
-    <ng-container cdkColumnDef="memberNumber">
-      <th cdk-header-cell *cdkHeaderCellDef>Member Number</th>
-      <td cdk-cell *cdkCellDef="let element">{{element.member_number}}</td>
-    </ng-container>
-
-    <ng-container cdkColumnDef="usageOfWater">
-      <th cdk-header-cell *cdkHeaderCellDef>Usage of water</th>
-      <td cdk-cell *cdkCellDef="let element">{{element.cubic_meters_pumped}}</td>
-    </ng-container>
-
-    <ng-container cdkColumnDef="functions" >
-      <th cdk-header-cell *cdkHeaderCellDef>Functions</th>
-      <td cdk-cell *cdkCellDef="let element">{{element.functions}}
-        <button  mat-raised-button color="primary" (click)="openDialogEdit(element)">edit</button>
-        <button class="button-delete" mat-raised-button color="warn" (click)="openDeleteDialog(element)">delete</button>
-      </td>
-
-    </ng-container>
-
-    <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
-    <tr cdk-row *cdkRowDef="let row; columns: displayedColumns"></tr>
-  </table>
-  <mat-paginator [pageSize]="10"
-                 [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
-  </mat-paginator>
-</div>
-
 

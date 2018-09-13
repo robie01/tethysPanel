@@ -49,6 +49,7 @@ export class EditDialogComponent implements OnInit {
       number_of_consumers: this.editForm.value.number_of_consumers,
       customerId: this.customer.customerId
     });
+    this.closeDialog();
   }
 
 

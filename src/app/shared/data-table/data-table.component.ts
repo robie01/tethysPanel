@@ -57,8 +57,6 @@ export class DataTableComponent implements AfterViewInit{
   openDeleteDialog(customer) {
     const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {data: {
         customer: customer,
-        // width: '400px',
-        // height: '200px'
       }
     });
     dialogRef.afterClosed().subscribe(result => {

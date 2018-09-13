@@ -1,13 +1,14 @@
 import {AuthData} from './auth-data-model';
-import {Admin} from './admin.model';
-import {Observable, Subject} from 'rxjs';
+import {Subject} from 'rxjs';
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {Customer} from '../shared/customer.model';
-import {User} from 'firebase';
 import {MatSnackBar} from '@angular/material';
 import {UiService} from '../shared/services/ui.service';
+import {Admin} from './admin.model';
+// import firebase from 'firebase/app';
+
 
 
 @Injectable()
@@ -16,6 +17,9 @@ export class AuthService {
   authChange = new Subject<boolean>();
   private isAuthenticated = false;
   customer: Customer;
+  admin: Admin;
+
+
 
 
 
@@ -25,6 +29,15 @@ export class AuthService {
               private uiService: UiService) {
 
   }
+  // getCurrentUser() {
+  //   const user = firebase.auth().currentUser;
+  //   if (user != null) {
+  //     this.admin.email = user.email;
+  //     this.admin.image = user.photoURL;
+  //     this.admin.id = user.uid;
+  //   }
+  //   console.log(user);
+  // }
   // for future use, global listener for authenticated user.
   initAuthListener() {
     this.fireAuth.authState.subscribe(admin => {
@@ -51,9 +64,7 @@ export class AuthService {
 
      }).catch(error => {
        this.uiService.loadingStateChange.next(false);
-       this.snackBar.open(error.message, null, {
-         duration: 3000
-       });
+       this.uiService.showSnackBar(error.message, null, 3000);
        console.log(error);
      });
   }

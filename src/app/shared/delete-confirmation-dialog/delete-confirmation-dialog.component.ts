@@ -22,7 +22,7 @@ export class DeleteConfirmationDialogComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.passedData);
-    this.customer = this.passedData;
+    this.customer = this.passedData.customer;
   }
 
   confirmDelete(customer) {

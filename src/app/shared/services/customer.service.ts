@@ -19,7 +19,8 @@ export class CustomerService {
   constructor(private db: AngularFirestore,
               private authService: AuthService) {
 
-    this.customerCollectionRef = this.db.collection('Customer');
+    this.customerCollectionRef = this.db.collection('customer');
+
     this.customerList = this.customerCollectionRef.snapshotChanges().map(changes => {
       return changes.map(a => {
         const data = a.payload.doc.data() as Customer;
@@ -45,7 +46,7 @@ export class CustomerService {
   }
   // deleting customer
   deleteCustomer(customer: Customer) {
-   this.customerDoc = this.db.doc('/Customer/' + customer);
+   this.customerDoc = this.db.doc('/customer/' + customer);
    this.customerDoc.delete();
   }
 

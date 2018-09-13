@@ -1,5 +1,5 @@
 export interface Admin {
   email: string;
-  userId: string;
+  id: string;
   image: string;
 }

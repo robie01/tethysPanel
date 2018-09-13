@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'add-customer', component: AddingCustomerComponent},
   {path: 'test', component: TestComponent},
-  {path: 'table', component: DataTableComponent},
+  {path: 'table', component: DataTableComponent, canActivate: [AuthGuard]},
 
 ];
 @NgModule({
