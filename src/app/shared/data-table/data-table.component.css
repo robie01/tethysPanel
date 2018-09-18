@@ -11,6 +11,9 @@ table {
 .button-delete {
   margin-left: 10px;
 }
+.button-statusChange {
+  margin-left: 10px;
+}
 #margin{
   margin-right: 2300px;
 }
@@ -18,5 +21,24 @@ table {
   padding-left: 100px;
 }
 .button-add {
-  margin-left: 0px;
+  margin-left: 10px;
+  height: 50px;
+
 }
+.button-area{
+  margin-top: 10px;
+}
+
+.container {
+  height: 100%;
+}
+button {
+  color: white;
+}
+button.btn-danger {
+  background-color: red;
+}
+button.btn-success {
+  background-color: green;
+}
+

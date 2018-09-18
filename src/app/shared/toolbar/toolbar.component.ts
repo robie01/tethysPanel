@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {AuthService} from '../../auth/auth-service';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
+import {Admin} from '../../auth/admin.model';
 
 @Component({
   selector: 'app-toolbar',
@@ -11,11 +12,16 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   @Output() navToggle = new EventEmitter();
   isAuth = false;
   authSubscription: Subscription;
-  constructor(private authService: AuthService) { }
+  adminInfo: Admin;
+
+
+  constructor(private authService: AuthService) {
+  }
 
   ngOnInit() {
     this.authSubscription = this.authService.authChange.subscribe(authStatus => {
      this.isAuth = authStatus;
+     this.authService.getAdminData(this.adminInfo);
     });
   }
   toggleSidenav() {
@@ -28,4 +34,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.authSubscription.unsubscribe();
   }
+
+
 }

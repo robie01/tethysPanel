@@ -31,7 +31,7 @@ export class AddingCustomerComponent implements OnInit {
     });
   }
 
-  onSave() {
+  onClickSave() {
     const customer = this.customerService.createCustomer({
       name: this.addCustomerForm.value.name,
       address: this.addCustomerForm.value.address,
@@ -42,9 +42,11 @@ export class AddingCustomerComponent implements OnInit {
       member_number: this.addCustomerForm.value.memberNumber,
       cubic_meters_pumped: this.addCustomerForm.value.cubicMetersPump,
     });
-    this.router.navigate(['/table']);
-    console.log(customer);
+      this.router.navigate(['/table']);
+      console.log(customer);
   }
 
 }
 
+// set the customer to active
+// navigate to the table page

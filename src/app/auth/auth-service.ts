@@ -1,13 +1,13 @@
 import {AuthData} from './auth-data-model';
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {AngularFireAuth} from 'angularfire2/auth';
-import {Customer} from '../shared/customer.model';
-import {MatSnackBar} from '@angular/material';
 import {UiService} from '../shared/services/ui.service';
+import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore';
 import {Admin} from './admin.model';
-// import firebase from 'firebase/app';
+
+
 
 
 
@@ -16,29 +16,31 @@ export class AuthService {
   // this gives indication either we are logged in or logged out.
   authChange = new Subject<boolean>();
   private isAuthenticated = false;
-  customer: Customer;
-  admin: Admin;
+  admin: Admin = new Admin();
 
-
-
-
+  test = new Subject();
 
   constructor(private router: Router,
+              private db: AngularFirestore,
               private fireAuth: AngularFireAuth,
-              private snackBar: MatSnackBar,
               private uiService: UiService) {
 
   }
-  // getCurrentUser() {
-  //   const user = firebase.auth().currentUser;
-  //   if (user != null) {
-  //     this.admin.email = user.email;
-  //     this.admin.image = user.photoURL;
-  //     this.admin.id = user.uid;
-  //   }
-  //   console.log(user);
-  // }
-  // for future use, global listener for authenticated user.
+
+  getAdminData(data) {
+    this.fireAuth.authState.subscribe(admin => {
+      if (admin) {
+        this.admin.email = admin.email;
+        const adminRef = this.db.collection('admin').doc(admin.uid);
+        adminRef.ref.get().then(function (doc) {
+          data = doc.data() as Admin;
+          console.log('gotcha', data);
+        });
+      }
+    });
+  }
+
+
   initAuthListener() {
     this.fireAuth.authState.subscribe(admin => {
       if (admin) {

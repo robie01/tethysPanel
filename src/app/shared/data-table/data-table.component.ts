@@ -17,9 +17,11 @@ import {DeleteConfirmationDialogComponent} from "../delete-confirmation-dialog/d
   styleUrls: ['./data-table.component.css']
 })
 export class DataTableComponent implements AfterViewInit{
-  displayedColumns = ['name', 'address', 'zipCode', 'vat', 'numberOfConsumer', 'memberNumber', 'usageOfWater' , 'functions'];
+  displayedColumns = ['name', 'address', 'zipCode', 'vat', 'numberOfConsumer', 'memberNumber', 'active', 'usageOfWater' , 'functions'];
   dataSource = new MatTableDataSource<Customer>();
   customer: Customer;
+  text = 'Deactivate';
+  customerStatus = {active: true};
 
 
   @ViewChild(MatSort) sort: MatSort;
@@ -63,6 +65,11 @@ export class DataTableComponent implements AfterViewInit{
       console.log('The dialog was closed');
       this.customer = result;
     });
+  }
+
+  onClickChangeStatus(customer) {
+    this.customerService.changeStatus(customer);
+    console.log('status changed' + customer);
   }
 
 

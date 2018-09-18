@@ -86,7 +86,8 @@ import {UiService} from './shared/services/ui.service';
     FlexLayoutModule,
     AngularFirestoreModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+
 
   ],
   providers: [AuthService,

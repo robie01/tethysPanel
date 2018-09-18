@@ -40,8 +40,8 @@ export class EditDialogComponent implements OnInit {
   }
 
 
-  saveUpdateCustomer() {
-    this.customerService.updateCustomer({
+  saveEditCustomer() {
+    this.customerService.editCustomer({
       name: this.editForm.value.name,
       address: this.editForm.value.address,
       zipCode: this.editForm.value.zipCode,

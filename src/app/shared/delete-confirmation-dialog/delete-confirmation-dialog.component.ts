@@ -23,13 +23,16 @@ export class DeleteConfirmationDialogComponent implements OnInit {
   ngOnInit() {
     console.log(this.passedData);
     this.customer = this.passedData.customer;
+
   }
 
   confirmDelete(customer) {
       this.customerService.deleteCustomer(customer.customerId);
       this.cancelDelete(customer);
+      this.customerService.getCustomer();
       console.log('delete' + customer);
   }
+
   cancelDelete(customer) {
     this.dialogRef.close(customer);
   }

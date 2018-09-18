@@ -1,55 +1,63 @@
-<div>
-  <div fxLayoutAlign="center center" id="margin">
-    <div class="button-add">
-      <button mat-raised-button color="primary" routerLink="/add-customer">Add Customer</button>
-    </div>
-    <mat-form-field id="marginSearch">
+<div fxLayout="column" class="container" fxLayoutGap="2%">
+  <div fxLayoutAlign="start stretch">
+    <div fxLayout="row" fxLayoutGap="5%" class="button-area">
+      <button mat-raised-button color="primary" routerLink="/add-customer" class="button-add" fxFlex="1 1 160px">Add Customer</button><mat-form-field >
       <input matInput type="text" placeholder="Search" (keyup)="doFilter($event.target.value)">
     </mat-form-field>
+    </div>
   </div>
   <div class="header-container" mat-elevation-z8>
     <table #table cdk-table [dataSource]="dataSource" bgcolor="#d3d3d3" matSort>
       <ng-container cdkColumnDef="name">
         <th cdk-header-cell *cdkHeaderCellDef mat-sort-header>Name</th>
-        <td cdk-cell *cdkCellDef="let element">{{element.name}}</td>
+        <td cdk-cell *cdkCellDef="let customer">{{customer.name}}</td>
       </ng-container>
 
       <ng-container cdkColumnDef="address">
         <th cdk-header-cell *cdkHeaderCellDef class="padding" mat-sort-header>Address</th>
-        <td cdk-cell *cdkCellDef="let element">{{element.address}}</td>
+        <td cdk-cell *cdkCellDef="let customer">{{customer.address}}</td>
       </ng-container>
 
       <ng-container cdkColumnDef="zipCode">
         <th cdk-header-cell *cdkHeaderCellDef mat-sort-header>Zip code</th>
-        <td cdk-cell *cdkCellDef="let element">{{element.zipCode}}</td>
+        <td cdk-cell *cdkCellDef="let customer">{{customer.zipCode}}</td>
       </ng-container>
 
       <ng-container cdkColumnDef="vat">
         <th cdk-header-cell *cdkHeaderCellDef mat-sort-header>Vat number</th>
-        <td cdk-cell *cdkCellDef="let element">{{element.vat_number}}</td>
+        <td cdk-cell *cdkCellDef="let customer">{{customer.vat_number}}</td>
       </ng-container>
 
       <ng-container cdkColumnDef="numberOfConsumer">
         <th cdk-header-cell *cdkHeaderCellDef mat-sort-header>Number of Consumer</th>
-        <td cdk-cell *cdkCellDef="let element">{{element.number_of_consumers}}</td>
+        <td cdk-cell *cdkCellDef="let customer">{{customer.number_of_consumers}}</td>
       </ng-container>
 
       <ng-container cdkColumnDef="memberNumber">
         <th cdk-header-cell *cdkHeaderCellDef mat-sort-header>Member Number</th>
-        <td cdk-cell *cdkCellDef="let element">{{element.member_number}}</td>
+        <td cdk-cell *cdkCellDef="let customer">{{customer.member_number}}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="active">
+        <th cdk-header-cell *cdkHeaderCellDef mat-sort-header>Active</th>
+        <td cdk-cell *cdkCellDef="let customer">{{customer.active}}</td>
       </ng-container>
 
       <ng-container cdkColumnDef="usageOfWater" >
         <th cdk-header-cell *cdkHeaderCellDef mat-sort-header>Usage of water</th>
-        <td cdk-cell *cdkCellDef="let element">{{element.cubic_meters_pumped}}</td>
+        <td cdk-cell *cdkCellDef="let customer">{{customer.cubic_meters_pumped}}</td>
       </ng-container>
 
       <ng-container cdkColumnDef="functions" >
         <th cdk-header-cell *cdkHeaderCellDef>Functions</th>
-        <td cdk-cell *cdkCellDef="let element">{{element.functions}}
-          <button mat-raised-button color="primary" (click)="openDialogEdit(element)">edit</button>
-          <button class="button-delete" mat-raised-button color="warn" (click)="openDeleteDialog(element)">delete
+        <td cdk-cell *cdkCellDef="let customer">{{customer.functions}}
+          <button mat-mini-fab color="primary" (click)="openDialogEdit(customer)"><mat-icon>update</mat-icon></button>
+          <button class="button-delete" mat-mini-fab color="warn" (click)="openDeleteDialog(customer)"><mat-icon>delete</mat-icon></button>
+          <button class="button-statusChange" mat-mini-fab [ngClass]="{'btn-danger': customer.active, 'btn-success': !customer.active}" (click)="onClickChangeStatus(customer)">
+            <mat-icon *ngIf="!customer.active">done</mat-icon>
+            <mat-icon *ngIf="customer.active">cancel</mat-icon>
           </button>
+
         </td>
 
       </ng-container>

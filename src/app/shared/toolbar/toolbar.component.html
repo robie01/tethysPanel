@@ -6,7 +6,7 @@
       </button>
     </div>
     <div class="logoItem">
-      <a routerLink="/">Tethys Aps Logo</a>
+      <a routerLink="/" name="email">Tethys Aps Logo</a>
     </div>
     <div fxFlex fxLayout fxLayoutAlign="flex-end">
       <ul fxLayout fxLayoutGap="10px" class="navigation-items">
@@ -15,8 +15,8 @@
         </li>
         <li *ngIf="isAuth">
           <a (click)="logout()">
-          Logout
-        </a>
+            Logout
+          </a>
         </li>
       </ul>
     </div>
