@@ -6,6 +6,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {AngularFirestore} from 'angularfire2/firestore';
 
 
+
 @Component({
   selector: 'app-edit-dialog',
   templateUrl: './edit-dialog.component.html',
@@ -36,9 +37,8 @@ export class EditDialogComponent implements OnInit {
   }
 
   closeDialog() {
-      this.dialogRef.close();
+    this.dialogRef.close();
   }
-
 
   saveEditCustomer() {
     this.customerService.editCustomer({
@@ -51,6 +51,8 @@ export class EditDialogComponent implements OnInit {
     });
     this.closeDialog();
   }
+
+
 
 
 }

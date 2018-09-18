@@ -28,10 +28,10 @@
         <input matInput placeholder="Number of Consumer" value="{{customer.number_of_consumers}}" formControlName="number_of_consumers">
       </mat-form-field>
     </mat-card-content>
-    <button id="cancel" mat-mini-fab color="warn" (click)="closeDialog()">
+    <button id="cancel" mat-mini-fab color="warn"  [mat-dialog-close]="customer">
       <mat-icon>cancel</mat-icon>
     </button>
-    <button type="submit" id="save" mat-mini-fab color="primary">
+    <button type="submit" id="save" mat-mini-fab color="primary" >
       <mat-icon>check</mat-icon>
     </button>
     </form>

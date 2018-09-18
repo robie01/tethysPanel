@@ -53,6 +53,10 @@ export class DataTableComponent implements AfterViewInit{
       width: '400px',
       data: customer,
     });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.customer = result;
+    });
   }
 
 
