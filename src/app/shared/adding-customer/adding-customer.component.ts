@@ -42,8 +42,12 @@ export class AddingCustomerComponent implements OnInit {
       member_number: this.addCustomerForm.value.memberNumber,
       cubic_meters_pumped: this.addCustomerForm.value.cubicMetersPump,
     });
-      this.router.navigate(['/table']);
+      this.router.navigateByUrl('/table');
       console.log(customer);
+  }
+
+  cancel() {
+    this.router.navigateByUrl('/table');
   }
 
 }

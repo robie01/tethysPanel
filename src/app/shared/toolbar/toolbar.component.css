@@ -9,3 +9,14 @@ a{
   padding: 0;
   margin: 0;
 }
+img {
+  margin-right: 10px;
+  margin-top: 15px;
+
+}
+em {
+  font-style: italic;
+  font-size: medium;
+  margin-right: 10px;
+  line-height: 40px;
+}

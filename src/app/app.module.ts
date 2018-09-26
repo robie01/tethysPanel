@@ -15,14 +15,14 @@ import {
   MatGridListModule,
   MatIconModule,
   MatInputModule,
-  MatListModule,
+  MatListModule, MatMenuModule,
   MatPaginatorModule,
   MatProgressSpinnerModule,
   MatSidenavModule,
   MatSnackBarModule,
   MatSortModule,
   MatTableModule
-} from '@angular/material';
+} from "@angular/material";
 
 import { AdminComponent } from './admin/admin.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -87,6 +87,7 @@ import {UiService} from './shared/services/ui.service';
     AngularFirestoreModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
+    MatMenuModule
 
 
   ],

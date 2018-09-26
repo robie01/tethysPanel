@@ -7,15 +7,17 @@
     </div>
     <div class="logoItem">
       <a routerLink="/" name="email">Tethys Aps Logo</a>
-    </div>
-    <div fxFlex fxLayout fxLayoutAlign="flex-end">
+  </div>
+    <div fxFlex fxLayout fxLayoutAlign="flex-end" >
       <ul fxLayout fxLayoutGap="10px" class="navigation-items">
         <li *ngIf="!isAuth">
           <a routerLink="/login">Login</a>
         </li>
-        <li *ngIf="isAuth">
+        <li *ngIf="isAuth" [value]="admin">
+        <img mat-card-avatar [src]="admin.image" width="50" height="50">
+          <em>{{admin.name}}</em>
           <a (click)="logout()">
-            Logout
+            <mat-icon>exit_to_app</mat-icon>
           </a>
         </li>
       </ul>

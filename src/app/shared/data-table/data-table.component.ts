@@ -7,8 +7,9 @@ import 'rxjs';
 
 
 import {EditDialogComponent} from '../edit-dialog/edit-dialog.component';
-import {map} from 'rxjs/internal/operators';
-import {DeleteConfirmationDialogComponent} from "../delete-confirmation-dialog/delete-confirmation-dialog.component";
+import {DeleteConfirmationDialogComponent} from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
+import {UiService} from '../services/ui.service';
+
 
 
 @Component({
@@ -16,24 +17,24 @@ import {DeleteConfirmationDialogComponent} from "../delete-confirmation-dialog/d
   templateUrl: './data-table.component.html',
   styleUrls: ['./data-table.component.css']
 })
-export class DataTableComponent implements AfterViewInit{
+export class DataTableComponent implements AfterViewInit, OnInit {
   displayedColumns = ['name', 'address', 'zipCode', 'vat', 'numberOfConsumer', 'memberNumber', 'active', 'usageOfWater' , 'functions'];
   dataSource = new MatTableDataSource<Customer>();
-  customer: Customer;
-  text = 'Deactivate';
-  customerStatus = {active: true};
-
+  customer: any;
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private customerService: CustomerService,
               private db: AngularFirestore,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private uiService: UiService) {
 
 
   }
-
+  ngOnInit() {
+    this.refreshTable();
+  }
   ngAfterViewInit() {
     this.customerService.getCustomer().subscribe(data => {
       console.log(data);
@@ -55,7 +56,7 @@ export class DataTableComponent implements AfterViewInit{
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.customer = result;
+      this.refreshTable();
     });
   }
 
@@ -71,9 +72,14 @@ export class DataTableComponent implements AfterViewInit{
     });
   }
 
-  onClickChangeStatus(customer) {
+  onClickChangeStatus(customer: Customer) {
     this.customerService.changeStatus(customer);
     console.log('status changed' + customer);
+  }
+  refreshTable() {
+    this.customerService.getCustomer().subscribe((customers) => {
+      this.customer = customers;
+    });
   }
 
 

@@ -4,6 +4,7 @@ import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} 
 import {AuthService} from '../../auth/auth-service';
 import {Observable} from 'rxjs';
 import 'rxjs/add/operator/map';
+import {UiService} from './ui.service';
 
 
 @Injectable({
@@ -21,7 +22,8 @@ export class CustomerService implements OnInit {
 
 
   constructor(private db: AngularFirestore,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private uiService: UiService) {
 
     this.customerCollectionRef = this.db.collection('customer');
 
@@ -64,7 +66,11 @@ export class CustomerService implements OnInit {
   }
   changeStatus(customer: Customer) {
     customer.active = !customer.active;
-    this.db.doc('customer/' + customer.customerId).update(customer);
+    this.db.doc('customer/' + customer.customerId).update(customer).then(() => {
+      console.log('status is change');
+    }).catch(error => {
+      this.uiService.showSnackBar(error.message, null, 3000);
+    });
   }
 
 

@@ -6,9 +6,12 @@
           <div class="column">
             <p>
               <mat-form-field appearance="outline">
-                <mat-label>Full Name</mat-label>
+                <mat-label>Name</mat-label>
                 <input matInput placeholder="Name" formControlName="name">
                 <mat-icon matSuffix>business</mat-icon>
+                <mat-hint>
+                  Please enter the name of the company!
+                </mat-hint>
               </mat-form-field>
             </p>
             <p>
@@ -16,6 +19,9 @@
                 <mat-label>Address</mat-label>
                 <input matInput placeholder="Address" formControlName="address">
                 <mat-icon matSuffix>add_location</mat-icon>
+                <mat-hint>
+                  Please enter the street name.
+                </mat-hint>
               </mat-form-field>
             </p>
             <p>
@@ -62,8 +68,8 @@
                 <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
               </mat-form-field>
             <p>
-              <button class="button-cancel" mat-raised-button>Cancel</button>
-              <button type="submit" class="button-save" mat-raised-button>Save</button>
+              <button type="reset" class="button-cancel" mat-raised-button (click)="cancel()">Cancel</button>
+              <button type="submit" class="button-save" mat-raised-button [disabled]="addCustomerForm.invalid">Save</button>
           </div>
         </mat-card-content>
       </mat-card>
