@@ -9,7 +9,7 @@ export interface Customer {
   cubic_meters_pumped?: number;
   active?: boolean;
   last_modified?: Date;
-  created?: Date;
+  created_at?: Date;
   member_number?: number;
 
 }

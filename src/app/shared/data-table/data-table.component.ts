@@ -18,7 +18,7 @@ import {UiService} from '../services/ui.service';
   styleUrls: ['./data-table.component.css']
 })
 export class DataTableComponent implements AfterViewInit, OnInit {
-  displayedColumns = ['name', 'address', 'zipCode', 'vat', 'numberOfConsumer', 'memberNumber', 'active', 'usageOfWater' , 'functions'];
+  displayedColumns = ['name', 'address', 'zipCode', 'vat', 'numberOfConsumer', 'memberNumber', 'active', 'usageOfWater' , 'creationDate', 'functions'];
   dataSource = new MatTableDataSource<Customer>();
   customer: any;
 
@@ -36,12 +36,12 @@ export class DataTableComponent implements AfterViewInit, OnInit {
     this.refreshTable();
   }
   ngAfterViewInit() {
-    this.customerService.getCustomer().subscribe(data => {
-      console.log(data);
-      this.dataSource = new MatTableDataSource<Customer>(data);
+     this.customerService.getCustomer().subscribe(data => this.dataSource.data = data, date => date);
+      // console.log(data);
+      // this.dataSource = new MatTableDataSource<Customer>(data);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
-    });
+    // });
     }
 
 
@@ -72,9 +72,9 @@ export class DataTableComponent implements AfterViewInit, OnInit {
     });
   }
 
-  onClickChangeStatus(customer: Customer) {
-    this.customerService.changeStatus(customer);
-    console.log('status changed' + customer);
+  onClickChangeStatus(customer) {
+    const mess = this.customerService.changeStatus(customer);
+    this.uiService.showSnackBar(customer.name + '  status is changed', null, 3000);
   }
   refreshTable() {
     this.customerService.getCustomer().subscribe((customers) => {

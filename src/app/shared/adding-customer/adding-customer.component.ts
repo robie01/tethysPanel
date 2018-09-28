@@ -27,7 +27,8 @@ export class AddingCustomerComponent implements OnInit {
       vatNumber: new FormControl('', {validators: Validators.required}),
       numberOfConsumer: new FormControl('', {validators: Validators.required}),
       memberNumber: new FormControl('', {validators: Validators.required}),
-      cubicMetersPump: new FormControl('', {validators: Validators.required})
+      cubicMetersPump: new FormControl('', {validators: Validators.required}),
+
     });
   }
 

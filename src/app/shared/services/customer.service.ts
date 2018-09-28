@@ -5,6 +5,10 @@ import {AuthService} from '../../auth/auth-service';
 import {Observable} from 'rxjs';
 import 'rxjs/add/operator/map';
 import {UiService} from './ui.service';
+import * as firebase from '../../../../node_modules/firebase';
+
+
+
 
 
 @Injectable({
@@ -15,10 +19,11 @@ export class CustomerService implements OnInit {
   customerList: Observable<Customer[]>;
 
   customerCollectionRef: AngularFirestoreCollection<Customer>;
-
-
   // reference doc to my delete method customer, specifying the document in firebase.
   customerDoc: AngularFirestoreDocument<Customer>;
+
+
+
 
 
   constructor(private db: AngularFirestore,
@@ -26,15 +31,7 @@ export class CustomerService implements OnInit {
               private uiService: UiService) {
 
     this.customerCollectionRef = this.db.collection('customer');
-
-    // getting the object in firebase with meta data as Customer.
-    this.customerList = this.customerCollectionRef.snapshotChanges().map(changes => {
-      return changes.map(a => {
-        const data = a.payload.doc.data() as Customer;
-        data.customerId = a.payload.doc.id;
-        return data;
-      });
-    });
+    this.getCustomer();
   }
 
   ngOnInit() {
@@ -45,12 +42,23 @@ export class CustomerService implements OnInit {
         this.customerCollectionRef.doc(customerRef.id).update({
           customerId: customerRef.id,
           active: true,
+          created_at: new Date(),
         });
       }).catch((err) => {
         console.log(err);
       });
     }
+
+  // getting the object in firebase with meta data as Customer.
   getCustomer() {
+    this.customerList = this.customerCollectionRef.snapshotChanges().map(changes => {
+      return changes.map(a => {
+        const data = a.payload.doc.data() as Customer;
+        const id = data.customerId;
+        const date =  new Date(data.created_at.seconds * 1000).toLocaleString();
+        return {id, ...data, date};
+      });
+    });
     return this.customerList;
   }
   // deleting customer
@@ -59,17 +67,18 @@ export class CustomerService implements OnInit {
    this.customerDoc.delete();
   }
   editCustomer(customer: Customer) {
-    console.log('customer', customer);
     this.customerCollectionRef.doc(customer.customerId).update(customer).then(() => {
       console.log('updated');
+    }).catch((err) => {
+      console.log(err);
     });
   }
   changeStatus(customer: Customer) {
-    customer.active = !customer.active;
-    this.db.doc('customer/' + customer.customerId).update(customer).then(() => {
+     customer.active = !customer.active;
+     this.db.doc('customer/' + customer.customerId).update(customer).then(() => {
       console.log('status is change');
     }).catch(error => {
-      this.uiService.showSnackBar(error.message, null, 3000);
+      console.log(error);
     });
   }
 

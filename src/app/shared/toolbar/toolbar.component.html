@@ -14,7 +14,7 @@
           <a routerLink="/login">Login</a>
         </li>
         <li *ngIf="isAuth" [value]="admin">
-        <img mat-card-avatar [src]="admin.image" width="50" height="50">
+        <img mat-card-avatar [src]="(admin.image ? admin.image : 'noimg.jpg')" width="50" height="50">
           <em>{{admin.name}}</em>
           <a (click)="logout()">
             <mat-icon>exit_to_app</mat-icon>

@@ -48,6 +48,12 @@
         <td cdk-cell *cdkCellDef="let customer">{{customer.cubic_meters_pumped}}</td>
       </ng-container>
 
+      <ng-container cdkColumnDef="creationDate" >
+        <th cdk-header-cell *cdkHeaderCellDef mat-sort-header>Date of creation</th>
+        <td cdk-cell *cdkCellDef="let customer">{{customer.date}}</td>
+      </ng-container>
+
+
       <ng-container cdkColumnDef="functions" >
         <th cdk-header-cell *cdkHeaderCellDef>Functions</th>
         <td cdk-cell *cdkCellDef="let customer">{{customer.functions}}
