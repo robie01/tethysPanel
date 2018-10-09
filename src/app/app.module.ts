@@ -22,11 +22,10 @@ import {
   MatSnackBarModule,
   MatSortModule,
   MatTableModule
-} from "@angular/material";
+} from '@angular/material';
 
 import { AdminComponent } from './admin/admin.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -44,6 +43,8 @@ import { DataTableComponent } from './shared/data-table/data-table.component';
 import { EditDialogComponent } from './shared/edit-dialog/edit-dialog.component';
 import { DeleteConfirmationDialogComponent } from './shared/delete-confirmation-dialog/delete-confirmation-dialog.component';
 import {UiService} from './shared/services/ui.service';
+import { MaterialDashboardComponent } from './material-dashboard/material-dashboard.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 
 @NgModule({
@@ -51,13 +52,13 @@ import {UiService} from './shared/services/ui.service';
     AppComponent,
     ToolbarComponent,
     AdminComponent,
-    HomeComponent,
     LoginComponent,
     AddingCustomerComponent,
     TestComponent,
     DataTableComponent,
     EditDialogComponent,
     DeleteConfirmationDialogComponent,
+    MaterialDashboardComponent,
 
   ],
   imports: [
@@ -87,7 +88,8 @@ import {UiService} from './shared/services/ui.service';
     AngularFirestoreModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    MatMenuModule
+    MatMenuModule,
+    LayoutModule
 
 
   ],

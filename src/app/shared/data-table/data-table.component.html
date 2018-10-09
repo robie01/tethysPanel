@@ -1,7 +1,7 @@
 <div fxLayout="column" class="container" fxLayoutGap="2%">
-  <div fxLayoutAlign="start stretch">
+  <div fxLayoutAlign="start stretch" class="position">
     <div fxLayout="row" fxLayoutGap="5%" class="button-area">
-      <button mat-raised-button color="primary" routerLink="/add-customer" class="button-add" fxFlex="1 1 160px">Add Customer</button><mat-form-field >
+      <button mat-mini-fab color="primary" routerLink="/add-customer" class="button-add"><mat-icon>person_add</mat-icon></button><mat-form-field >
       <input matInput type="text" placeholder="Search" (keyup)="doFilter($event.target.value)">
     </mat-form-field>
     </div>
@@ -77,3 +77,4 @@
   </div>
 </div>
 
+<!--fxFlex="1 1 160px-->
