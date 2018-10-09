@@ -5,9 +5,6 @@ import {AuthService} from '../../auth/auth-service';
 import {Observable} from 'rxjs';
 import 'rxjs/add/operator/map';
 import {UiService} from './ui.service';
-import * as firebase from '../../../../node_modules/firebase';
-
-
 
 
 
@@ -21,9 +18,6 @@ export class CustomerService implements OnInit {
   customerCollectionRef: AngularFirestoreCollection<Customer>;
   // reference doc to my delete method customer, specifying the document in firebase.
   customerDoc: AngularFirestoreDocument<Customer>;
-
-
-
 
 
   constructor(private db: AngularFirestore,
@@ -53,10 +47,10 @@ export class CustomerService implements OnInit {
   getCustomer() {
     this.customerList = this.customerCollectionRef.snapshotChanges().map(changes => {
       return changes.map(a => {
-        const data = a.payload.doc.data() as Customer;
-        const id = data.customerId;
-        const date =  new Date(data.created_at.seconds * 1000).toLocaleString();
-        return {id, ...data, date};
+        this.customer = a.payload.doc.data() as Customer;
+        const id = this.customer.customerId;
+        const date = this.customer.created_at;
+        return {id, ...this.customer, date};
       });
     });
     return this.customerList;

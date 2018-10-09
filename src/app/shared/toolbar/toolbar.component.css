@@ -15,8 +15,16 @@ img {
 
 }
 em {
+  color: white;
   font-style: italic;
   font-size: medium;
   margin-right: 10px;
   line-height: 40px;
+}
+.toolbar-color {
+  background-color: #232f3b;
+
+}
+mat-icon {
+  color: white;
 }
